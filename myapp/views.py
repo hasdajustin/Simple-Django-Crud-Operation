@@ -1,5 +1,7 @@
 from django.shortcuts import render
+from .models import User
 
 # Create your views here.
 def display_data(request):
-    return render(request, 'myapp/display_data.html')
+    userData = User.objects.all()
+    return render(request, 'myapp/display_data.html', {'userData':userData})

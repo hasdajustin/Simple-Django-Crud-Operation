@@ -29,3 +29,7 @@ def edit_userinfo(request, pk):
         form = UserForm(instance=user) # user er sob data gula form e show korbe.
     return render(request, 'myapp/edit_userinfo.html', {'form': form})
 
+def delete_userinfo(requeset, pk):
+    user = get_object_or_404(User, pk=pk)
+    user.delete()
+    return redirect('display_data')

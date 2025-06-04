@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import User
 from .forms import UserForm
 
@@ -18,5 +18,14 @@ def add_newUser(request):
         form = UserForm()
     return render(request,'myapp/add_newUser.html', {'form':form})
 
-
+def edit_userinfo(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('display_data')
+    else:
+        form = UserForm(instance=user) # user er sob data gula form e show korbe.
+    return render(request, 'myapp/edit_userinfo.html', {'form': form})
 

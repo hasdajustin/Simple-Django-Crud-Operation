@@ -21,7 +21,11 @@
                     <td>{{user.username}}</td>
                     <td>{{user.phone}}</td>
                     <td>{{user.email}}</td>
-                    <td></td>
+                    <td>
+                        <a class="btn btn-warning" href="{% url 'edit_userinfo' user.pk %}">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
